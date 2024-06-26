@@ -467,7 +467,7 @@ impl<D: PickerDelegate> Picker<D> {
         }
     }
 
-    fn scroll_to_item_index(&mut self, ix: usize) {
+    pub fn scroll_to_item_index(&mut self, ix: usize) {
         match &mut self.element_container {
             ElementContainer::List(state) => state.scroll_to_reveal_item(ix),
             ElementContainer::UniformList(scroll_handle) => scroll_handle.scroll_to_item(ix),
