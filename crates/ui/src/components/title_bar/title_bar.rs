@@ -1,4 +1,4 @@
-use gpui::{Action, AnyElement, Interactivity, Stateful, WindowDecorations};
+use gpui::{Action, AnyElement, Decorations, Interactivity, Stateful};
 use smallvec::SmallVec;
 
 use crate::components::title_bar::linux_window_controls::LinuxWindowControls;
@@ -117,7 +117,7 @@ impl RenderOnce for TitleBar {
             .when(
                 self.platform_style == PlatformStyle::Linux
                     && !cx.is_fullscreen()
-                    && cx.window_decorations() == WindowDecorations::Client,
+                    && matches!(cx.window_decorations(), Decorations::Client { .. }),
                 |title_bar| {
                     title_bar
                         .child(LinuxWindowControls::new(height, self.close_window_action))
